@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 380" role="img" aria-label="Sleigh under a starry winter night sky">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b2016"/>
+      <stop offset="1" stop-color="#1b3b2b"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f2e6bd"/>
+      <stop offset="1" stop-color="#d9b84a"/>
+    </radialGradient>
+  </defs>
+  <rect width="500" height="380" fill="url(#sky)"/>
+  <circle cx="90" cy="66" r="30" fill="url(#moon)"/>
+  <path d="M92 44 a34 34 0 0 0 0 44" fill="#0b2016"/>
+  <g fill="#fbf9f4" opacity="0.85">
+    <circle cx="180" cy="50" r="2.4"/>
+    <circle cx="240" cy="92" r="1.8"/>
+    <circle cx="320" cy="40" r="2.6"/>
+    <circle cx="380" cy="80" r="1.8"/>
+    <circle cx="430" cy="46" r="2.2"/>
+    <circle cx="140" cy="110" r="1.6"/>
+    <circle cx="40" cy="130" r="2"/>
+    <circle cx="460" cy="130" r="2"/>
+  </g>
+  <path d="M0 400 L40 230 L82 120 L120 228 L160 100 L200 228 L247 128 L290 224 L332 112 L372 224 L410 130 L452 228 L500 120 L500 400 Z" fill="#10231a" opacity="0.9"/>
+  <rect x="0" y="300" width="500" height="80" fill="#eef6f0"/>
+  <ellipse cx="250" cy="300" rx="260" ry="22" fill="#fbf9f4"/>
+  <path d="M96 242 q70 -86 208 -80 l44 34 l6 26 l-258 0 z" fill="#6f422e" stroke="#8b6a1c" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M88 246 q260 -34 392 6 l-6 16 q-120 -34 -386 0 z" fill="none" stroke="#c9a227" stroke-width="6" stroke-linecap="round"/>
+  <path d="M292 96 a34 34 0 0 1 68 0 v46 l-40 4 v-50 l-14 12 q-6 -6 -14 -12 z" fill="#fbf9f4"/>
+  <circle cx="326" cy="186" r="6" fill="#fbf9f4"/>
+  <path d="M264 120 l-6 14 -15 2 11 10 -3 15 13 -8 13 8 -3 -15 11 -10 -15 -2 z" fill="#c9a227"/>
+  <path d="M408 86 l-5 11 -12 1 9 8 -2 12 10 -6 10 6 -2 -12 9 -8 -12 -1 z" fill="#e8d48b"/>
+</svg>

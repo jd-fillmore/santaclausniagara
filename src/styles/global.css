@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Deep pine greens */
+  --color-pine-50: #eef7f1;
+  --color-pine-100: #d5ecdc;
+  --color-pine-200: #acd9bc;
+  --color-pine-300: #7bbf97;
+  --color-pine-400: #4da074;
+  --color-pine-500: #2f8258;
+  --color-pine-600: #226846;
+  --color-pine-700: #1d5339;
+  --color-pine-800: #1b432f;
+  --color-pine-900: #1b3b2b;
+  --color-pine-950: #0b2016;
+
+  /* Warm gold accents */
+  --color-gold-50: #fbf8ec;
+  --color-gold-100: #faf3dd;
+  --color-gold-200: #f2e6bd;
+  --color-gold-300: #e8d48b;
+  --color-gold-400: #d9b84a;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #ad871d;
+  --color-gold-700: #8b6a1c;
+  --color-gold-800: #73531d;
+  --color-gold-900: #62441d;
+
+  /* Mahogany browns */
+  --color-mahogany-50: #f4ece4;
+  --color-mahogany-100: #e3cfbb;
+  --color-mahogany-200: #c9a98d;
+  --color-mahogany-300: #a97f66;
+  --color-mahogany-400: #8a5a42;
+  --color-mahogany-500: #6f422e;
+  --color-mahogany-600: #5b3425;
+  --color-mahogany-700: #4a2a1d;
+  --color-mahogany-800: #3c2117;
+
+  /* Tartan claret reds */
+  --color-claret-300: #c25a6a;
+  --color-claret-400: #a63445;
+  --color-claret-500: #8a2432;
+  --color-claret-600: #731d29;
+  --color-claret-700: #5c1721;
+
+  /* Soft warm cream / parchment */
+  --color-cream-50: #fdfcf9;
+  --color-cream-100: #fbf9f4;
+  --color-cream-200: #f5f0e4;
+  --color-cream-300: #ece2cf;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 1.2s ease-out both;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-100 font-sans text-pine-950 antialiased;
+  }
+
+  ::selection {
+    background: var(--color-gold-200);
+    color: var(--color-pine-950);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream-100);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-pine-800);
+    border-radius: 9999px;
+    border: 3px solid var(--color-cream-100);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-pine-700);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 px-8 py-3.5 text-[13px] font-semibold tracking-[0.18em] uppercase transition-all duration-300;
+  }
+
+  .btn-gold {
+    @apply bg-gold-500 text-pine-950 shadow-lg shadow-gold-500/25 hover:-translate-y-0.5 hover:bg-gold-400;
+  }
+
+  .btn-outline-cream {
+    @apply border border-cream-100/50 text-cream-100 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-300;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold tracking-[0.32em] uppercase text-gold-600;
+  }
+
+  .eyebrow-light {
+    @apply text-[11px] font-semibold tracking-[0.32em] uppercase text-gold-300;
+  }
+
+  .gold-frame {
+    @apply border-2 border-gold-500/40 bg-cream-50 p-3 shadow-lg shadow-pine-950/10;
+  }
+
+  .tile {
+    @apply border border-gold-500/25 bg-cream-50 p-8 shadow-sm shadow-pine-950/5 transition-all duration-300 hover:-translate-y-1 hover:border-gold-500/60 hover:shadow-xl hover:shadow-pine-950/10;
+  }
+
+  /* Ralph Lauren–style tartan plaid */
+  .plaid {
+    background-color: var(--color-pine-900);
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 26px,
+        rgba(201, 162, 39, 0.4) 26px 28px,
+        transparent 28px 52px,
+        rgba(138, 36, 50, 0.55) 52px 60px,
+        transparent 60px 88px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0 26px,
+        rgba(201, 162, 39, 0.4) 26px 28px,
+        transparent 28px 52px,
+        rgba(138, 36, 50, 0.55) 52px 60px,
+        transparent 60px 88px
+      );
+  }
+
+  .plaid-banner {
+    background-color: var(--color-pine-900);
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(201, 162, 39, 0.75) 0 8px,
+        transparent 8px 22px,
+        rgba(138, 36, 50, 0.85) 22px 30px,
+        transparent 30px 44px,
+        rgba(11, 32, 22, 0.9) 44px 52px,
+        rgba(201, 162, 39, 0.75) 52px 56px,
+        transparent 56px 70px,
+        rgba(138, 36, 50, 0.85) 70px 74px,
+        transparent 74px 88px
+      );
+  }
+
+  .plaid-overlay {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 30px,
+        rgba(201, 162, 39, 0.07) 30px 32px,
+        transparent 32px 60px,
+        rgba(138, 36, 50, 0.09) 60px 68px,
+        transparent 68px 98px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0 30px,
+        rgba(201, 162, 39, 0.07) 30px 32px,
+        transparent 32px 60px,
+        rgba(138, 36, 50, 0.09) 60px 68px,
+        transparent 68px 98px
+      );
+  }
+}

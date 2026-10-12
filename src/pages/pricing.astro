@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const regions = [
+	{
+		name: 'Niagara Falls',
+		note: 'Primary coverage area',
+		status: 'Included',
+		icon: 'falls',
+	},
+	{
+		name: 'St. Catharines',
+		note: 'Primary coverage area',
+		status: 'Included',
+		icon: 'seaway',
+	},
+	{
+		name: 'Niagara-on-the-Lake',
+		note: 'Primary coverage area',
+		status: 'Included',
+		icon: 'lake',
+	},
+];
+
+const guidelines = [
+	{
+		title: 'Book early',
+		text: 'The holiday season fills quickly, especially weekends and the days closest to Christmas Eve. Reaching out early guarantees your preferred date and time.',
+	},
+	{
+		title: 'Share the details',
+		text: 'Tell Santa about your event type, expected number of guests, location, and what you would love him to include — a story, photos, or time with gifts.',
+	},
+	{
+		title: 'Confirm your booking',
+		text: 'Every booking is confirmed by phone or email so everything is clear and set. Call (905) 327-9036 or email byauch@cogeco.ca to lock in your date.',
+	},
+	{
+		title: 'Plan a little arrival buffer',
+		text: 'A few extra minutes in your schedule let guests settle in before Santa makes his grand entrance — magic is best when everyone is ready.',
+	},
+];
+
+const faqs = [
+	{
+		q: 'How much does a visit cost?',
+		a: 'Visits are $125.00 for the first hour, then $50.00 for each additional half hour. Travel within St. Catharines, Niagara Falls, and Niagara-on-the-Lake is included; a small additional charge applies for surrounding areas.',
+	},
+	{
+		q: 'Does Santa bring his own props or photos?',
+		a: 'Santa can be arranged with photography, gifts, sleigh bells, and seasonal touches depending on the event. Your needs are discussed at booking.',
+	},
+	{
+		q: 'How long do visits typically last?',
+		a: 'Every appearance is tailored to the event. Home visits and meet-and-greets are usually arranged in comfortable time blocks, with corporate and community appearances scaled to your agenda.',
+	},
+	{
+		q: 'Is a deposit required?',
+		a: 'Booking terms are confirmed directly with Santa by phone or email, so you always know exactly what to expect before the big day.',
+	},
+	{
+		q: 'What happens if the date or time needs to change?',
+		a: 'Life happens, even at Christmastime. Reach out as soon as possible and Santa will do everything he can to accommodate your new plans.',
+	},
+];
+---
+
+<Layout title="Pricing & Info | Santa Claus Niagara — Booking Guidelines & Coverage">
+	<section class="relative overflow-hidden bg-pine-950">
+		<div class="absolute -top-24 left-1/4 h-[380px] w-[560px] rounded-full bg-gold-500/15 blur-[110px]"></div>
+		<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
+		<div class="plaid-banner absolute bottom-0 inset-x-0 h-2"></div>
+		<div class="relative mx-auto max-w-5xl px-5 pt-20 pb-24 text-center sm:px-8">
+			<p class="eyebrow-light animate-fade-in">Pricing & Info</p>
+			<h1 class="mt-4 font-display text-5xl font-semibold text-cream-50 sm:text-6xl animate-fade-up">
+				How to Bring <span class="italic text-gold-300">Santa Home</span>
+			</h1>
+			<p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream-100/75 animate-fade-up" style="animation-delay: 0.15s">
+				Clear, simple guidance on booking, coverage, and travel — so planning your
+				celebration is as joyful as the visit itself.
+			</p>
+		</div>
+	</section>
+
+	<!-- Booking guidelines -->
+	<section class="mx-auto max-w-7xl px-5 pt-20 sm:px-8 lg:pt-24">
+		<div class="mx-auto max-w-2xl text-center">
+			<p class="eyebrow">Booking Guidelines</p>
+			<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
+				Simple steps to a magical visit
+			</h2>
+		</div>
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				guidelines.map((step, i) => (
+					<div class="tile relative rounded-sm">
+						<span class="font-display text-5xl leading-none font-semibold text-gold-500/60">{String(i + 1).padStart(2, '0')}</span>
+						<h3 class="mt-4 font-serif text-lg font-bold text-pine-900">{step.title}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-pine-800/75">{step.text}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Rates -->
+	<section class="mx-auto max-w-7xl px-5 pb-4 sm:px-8">
+		<div class="mx-auto max-w-3xl">
+			<div class="gold-frame">
+				<div class="relative overflow-hidden rounded-sm bg-pine-950 p-8 text-center sm:p-12">
+					<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
+					<div class="relative">
+						<p class="eyebrow-light">Rates</p>
+						<h2 class="mt-3 font-serif text-3xl font-bold text-cream-50 sm:text-4xl">
+							Simple, friendly pricing
+						</h2>
+						<div class="mt-9 flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-14">
+							<div>
+								<p class="font-display text-6xl leading-none font-semibold text-gold-400">$125</p>
+								<p class="mt-3 text-xs font-semibold tracking-[0.2em] text-cream-100/70 uppercase">First hour</p>
+							</div>
+							<div class="hidden h-20 w-px bg-gold-500/30 sm:block"></div>
+							<div>
+								<p class="font-display text-6xl leading-none font-semibold text-gold-400">$50</p>
+								<p class="mt-3 text-xs font-semibold tracking-[0.2em] text-cream-100/70 uppercase">Each additional ½ hour</p>
+							</div>
+						</div>
+						<p class="mx-auto mt-9 max-w-xl text-sm leading-relaxed text-cream-100/75">
+							Includes travel within
+							<span class="font-semibold text-cream-100">St. Catharines</span>,
+							<span class="font-semibold text-cream-100">Niagara Falls</span>, and
+							<span class="font-semibold text-cream-100">Niagara-on-the-Lake</span>. A small
+							charge applies to surrounding areas and is always confirmed before booking.
+						</p>
+						<div class="mt-9">
+							<a href="/contact/" class="btn btn-gold rounded-sm">Check Your Date</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Regional coverage -->
+	<section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+		<div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+			<div>
+				<p class="eyebrow">Regional Coverage</p>
+				<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
+					Serving the heart of Niagara
+				</h2>
+				<p class="mt-5 leading-relaxed text-pine-800/80">
+					Santa Claus Niagara proudly serves the primary communities of
+					<span class="font-semibold text-pine-900"> Niagara Falls</span>,
+					<span class="font-semibold text-pine-900"> St. Catharines</span>, and
+					<span class="font-semibold text-pine-900"> Niagara-on-the-Lake</span>. For
+					events in surrounding regions, Santa is happy to travel — additional travel
+					charges may apply.
+				</p>
+				<div class="mt-8 rounded-sm border border-gold-500/40 bg-cream-200/70 p-6">
+					<div class="flex items-start gap-3">
+						<svg class="mt-0.5 h-5 w-5 shrink-0 text-gold-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<circle cx="12" cy="12" r="9" />
+							<path d="M12 7v6l4 2" />
+						</svg>
+						<p class="text-sm leading-relaxed text-pine-900/85">
+							<span class="font-semibold">A note on travel:</span> events outside the
+							primary Niagara coverage areas may include extra travel charges. The exact
+							arrangement is always confirmed with you in advance — no surprises.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="space-y-4">
+				{
+					regions.map((region) => (
+						<div class="tile flex items-center justify-between gap-4 rounded-sm">
+							<div class="flex items-center gap-4">
+								<span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold-500/40 bg-gold-500/10 text-gold-700">
+									<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+										<path d="M12 21c4-4 8-7.3 8-11a8 8 0 1 0-16 0c0 3.7 4 7 8 11Z" />
+										<circle cx="12" cy="10" r="2.5" />
+									</svg>
+								</span>
+								<div>
+									<h3 class="font-serif text-lg font-bold text-pine-900">{region.name}</h3>
+									<p class="text-xs tracking-[0.14em] text-pine-800/60 uppercase">{region.note}</p>
+								</div>
+							</div>
+							<span class="inline-flex items-center gap-1.5 rounded-full bg-pine-600/10 px-3.5 py-1.5 text-xs font-semibold tracking-[0.1em] text-pine-700 uppercase">
+								<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M20 6 9 17l-5-5" />
+								</svg>
+								{region.status}
+							</span>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Getting a quote -->
+	<section class="relative overflow-hidden bg-pine-950 py-20">
+		<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
+		<div class="absolute -bottom-24 left-1/3 h-72 w-96 rounded-full bg-gold-500/10 blur-[100px]"></div>
+		<div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+			<p class="eyebrow-light">Custom Quotes</p>
+			<h2 class="mt-3 font-serif text-3xl font-bold text-cream-50 sm:text-4xl">
+				Every visit is tailored to you
+			</h2>
+			<p class="mx-auto mt-5 max-w-2xl leading-relaxed text-cream-100/75">
+				Visits start at <span class="font-semibold text-cream-100">$125 for the first hour</span>,
+				then <span class="font-semibold text-cream-100">$50 for each additional half hour</span>.
+				Travel within St. Catharines, Niagara Falls, and Niagara-on-the-Lake is included, with a
+				small charge for surrounding areas. Reach out with your date and Santa will confirm the
+				details — early inquiries are always best in the busy season.
+			</p>
+			<div class="mt-9 flex flex-col items-center justify-center gap-4 text-sm sm:flex-row">
+				<a href="/contact/" class="btn btn-gold rounded-sm">Request a Quote</a>
+				<a href="tel:+19053279036" class="btn btn-outline-cream rounded-sm">
+					<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+						<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 1.9Z" />
+					</svg>
+					(905) 327-9036
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ -->
+	<section class="mx-auto max-w-4xl px-5 py-20 sm:px-8 lg:py-24">
+		<div class="mx-auto max-w-2xl text-center">
+			<p class="eyebrow">Good to Know</p>
+			<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
+				Frequently asked questions
+			</h2>
+		</div>
+		<div class="mt-12 space-y-4">
+			{
+				faqs.map((faq) => (
+					<div class="tile rounded-sm">
+						<h3 class="font-serif text-lg font-bold text-pine-900">{faq.q}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-pine-800/75">{faq.a}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+</Layout>

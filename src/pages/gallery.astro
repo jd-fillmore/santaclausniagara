@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import gallerySkate from '../assets/santa-14.jpg';
+import galleryAngelInn from '../assets/santa-20.jpg';
+import galleryCarriage from '../assets/santa-24.jpg';
+import galleryGrinch from '../assets/santa-48.jpg';
+import galleryLap from '../assets/santa-38.jpg';
+import galleryHome from '../assets/santa-28.jpg';
+
+const images = [
+	{
+		src: gallerySkate,
+		alt: 'Santa Claus on the ice helping children skate',
+		title: 'Skating With Every Child',
+		caption: 'Community & charity events',
+	},
+	{
+		src: galleryAngelInn,
+		alt: 'Santa Claus at the Angel Inn in Niagara-on-the-Lake',
+		title: 'A Niagara Tradition',
+		caption: 'The Angel Inn, Niagara-on-the-Lake',
+	},
+	{
+		src: galleryCarriage,
+		alt: 'Horse-drawn carriage in Niagara-on-the-Lake',
+		title: 'Carriage Rides in NOTL',
+		caption: 'Niagara-on-the-Lake charm',
+	},
+	{
+		src: galleryGrinch,
+		alt: 'Santa Claus posing with the Grinch',
+		title: 'Even the Grinch Stopped By',
+		caption: 'Holiday fun & meet-and-greets',
+	},
+	{
+		src: galleryLap,
+		alt: 'A child sitting on Santa Claus\u2019s lap',
+		title: 'A Moment to Remember',
+		caption: 'Private home visits',
+	},
+	{
+		src: galleryHome,
+		alt: 'Santa Claus visiting children at a private home',
+		title: 'Evenings by the Fireplace',
+		caption: 'Private home visits',
+	},
+];
+---
+
+<Layout title="Gallery | Santa Claus Niagara — Holiday Moments">
+	<section class="relative overflow-hidden bg-pine-950">
+		<div class="absolute -top-24 right-1/4 h-[380px] w-[560px] rounded-full bg-gold-500/15 blur-[110px]"></div>
+		<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
+		<div class="plaid-banner absolute bottom-0 inset-x-0 h-2"></div>
+		<div class="relative mx-auto max-w-5xl px-5 pt-20 pb-24 text-center sm:px-8">
+			<p class="eyebrow-light animate-fade-in">Gallery</p>
+			<h1 class="mt-4 font-display text-5xl font-semibold text-cream-50 sm:text-6xl animate-fade-up">
+				Moments of <span class="italic text-gold-300">Holiday Magic</span>
+			</h1>
+			<p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream-100/75 animate-fade-up" style="animation-delay: 0.15s">
+				A glimpse of the warmth and wonder Santa brings to homes and celebrations across
+				the Niagara region.
+			</p>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+		<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				images.map((image) => (
+					<figure class="gold-frame group rounded-sm">
+						<div class="overflow-hidden rounded-sm">
+							<Image
+								src={image.src}
+								alt={image.alt}
+								loading="lazy"
+								class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+							/>
+						</div>
+						<figcaption class="px-2 pt-4 pb-1 text-center">
+							<div class="mx-auto mb-2 h-px w-10 bg-gold-500/60"></div>
+							<p class="font-serif text-lg font-bold text-pine-900">{image.title}</p>
+							<p class="mt-0.5 text-xs tracking-[0.18em] text-gold-700 uppercase">{image.caption}</p>
+						</figcaption>
+					</figure>
+				))
+			}
+		</div>
+
+		<div class="mt-16 rounded-sm border border-gold-500/40 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 px-8 py-10 text-center">
+			<h2 class="font-serif text-2xl font-bold text-pine-950 sm:text-3xl">Your holiday moment could be next.</h2>
+			<p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-pine-950/80">
+				Ready to create your own family memory with Santa? Check availability for your
+				preferred date today.
+			</p>
+			<div class="mt-7">
+				<a href="/contact/" class="btn rounded-sm border border-pine-950/30 bg-pine-950 text-gold-300 hover:-translate-y-0.5 hover:bg-pine-900">
+					Book Your Visit
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>

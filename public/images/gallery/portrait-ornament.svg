@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 380" role="img" aria-label="Elegant golden Christmas portrait ornament">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f0e4"/>
+      <stop offset="1" stop-color="#fdfcf9"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.35" cy="0.3" r="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fbf9f4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="500" height="380" fill="url(#bg)"/>
+  <circle cx="250" cy="196" r="130" fill="url(#shine)"/>
+  <path d="M250 52 l-10 14 h20 z" fill="#c9a227"/>
+  <path d="M250 66 h-52 l8 12 h-10 l8 12 h-10 l8 12 h-10 l10 16 h96 l10 -16 h-10 l8 -12 h-10 l8 -12 h-10 l8 -12 h-10 z" fill="#d9b84a" opacity="0.35"/>
+  <g fill="none" stroke="#8b6a1c" stroke-width="3">
+    <path d="M250 66 v-8 l36 -20 M250 66 v-8 l-36 -20"/>
+  </g>
+  <circle cx="250" cy="200" r="118" fill="none" stroke="#c9a227" stroke-width="5"/>
+  <circle cx="250" cy="200" r="104" fill="none" stroke="#c9a227" stroke-width="1.4" opacity="0.5"/>
+  <g stroke="#1b3b2b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M250 116 v168"/>
+    <path d="M172 150 l156 100"/>
+    <path d="M172 250 l156 -100"/>
+  </g>
+  <circle cx="250" cy="200" r="12" fill="none" stroke="#c9a227" stroke-width="3"/>
+  <g fill="#e8d48b">
+    <circle cx="118" cy="70" r="3.5"/>
+    <circle cx="392" cy="84" r="3.5"/>
+    <circle cx="90" cy="210" r="3"/>
+    <circle cx="412" cy="296" r="3"/>
+  </g>
+  <g fill="none" stroke="#3c2117" stroke-width="3" stroke-linecap="round">
+    <path d="M140 310 c-6 14 2 24 12 24 c4 -10 0 -20 -12 -24 z"/>
+    <path d="M360 310 c6 14 -2 24 -12 24 c-4 -10 0 -20 12 -24 z"/>
+  </g>
+  <circle cx="142" cy="340" r="4" fill="#8a5a42"/>
+  <circle cx="358" cy="340" r="4" fill="#8a5a42"/>
+</svg>

@@ -1,0 +1,126 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+	{ href: '/', label: 'Home' },
+	{ href: '/about/', label: 'About' },
+	{ href: '/services/', label: 'Services' },
+	{ href: '/gallery/', label: 'Gallery' },
+	{ href: '/pricing/', label: 'Pricing & Info' },
+	{ href: '/contact/', label: 'Contact' },
+];
+---
+
+<footer class="relative overflow-hidden bg-pine-950 text-cream-100">
+	<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
+	<div class="plaid-banner h-1.5 w-full"></div>
+	<svg
+		class="pointer-events-none absolute -top-20 -right-20 h-80 w-80 text-gold-500/10 animate-float"
+		viewBox="0 0 40 52"
+		aria-hidden="true"
+	>
+		<circle cx="20" cy="27" r="17" fill="none" stroke="currentColor" stroke-width="1" />
+		<path d="M20 14 v26 M9 22 l22 10 M9 32 l22 -10" stroke="currentColor" stroke-width="1" fill="none" />
+		<circle cx="20" cy="27" r="2.5" fill="none" stroke="currentColor" stroke-width="1" />
+	</svg>
+
+	<div class="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-16">
+		<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+			<div>
+				<a href="/" class="flex items-center gap-3">
+					<svg viewBox="0 0 40 52" class="h-12 w-9 shrink-0" aria-hidden="true">
+						<rect x="16" y="3" width="8" height="5" rx="1.5" fill="#c9a227" />
+						<circle cx="20" cy="27" r="17" fill="#0b2016" stroke="#c9a227" stroke-width="2" />
+						<path d="M9 27 a11 11 0 0 1 22 0" fill="none" stroke="#c9a227" stroke-width="1" opacity="0.55" />
+						<path
+							d="M20 17 v20 M11 22 l18 10 M11 32 l18 -10"
+							stroke="#fbf9f4"
+							stroke-width="1.4"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							fill="none"
+						/>
+					</svg>
+					<span>
+						<span class="block font-serif text-xl font-bold tracking-wide text-cream-100">Santa Claus</span>
+						<span class="block text-[11px] font-semibold tracking-[0.42em] text-gold-400 uppercase">Niagara</span>
+					</span>
+				</a>
+				<p class="mt-5 max-w-xs text-sm leading-relaxed text-cream-100/70">
+					The real-bearded professional Santa bringing warmth, laughter, and timeless holiday
+					magic to family homes and celebrations across Niagara.
+				</p>
+			</div>
+
+			<div>
+				<h3 class="eyebrow-light mb-5">Contact</h3>
+				<ul class="space-y-3 text-sm text-cream-100/80">
+					<li>
+						<a href="tel:+19053279036" class="inline-flex items-center gap-2.5 transition-colors hover:text-gold-300">
+							<svg class="h-4 w-4 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+								<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 1.9Z" />
+							</svg>
+							<span>(905) 327-9036</span>
+						</a>
+					</li>
+					<li>
+						<a href="mailto:byauch@cogeco.ca" class="inline-flex items-center gap-2.5 transition-colors hover:text-gold-300">
+							<svg class="h-4 w-4 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+								<rect x="2" y="4" width="20" height="16" rx="2" />
+								<path d="m22 7-10 6L2 7" />
+							</svg>
+							<span>byauch@cogeco.ca</span>
+						</a>
+					</li>
+					<li class="pt-1">
+						<a href="/contact/" class="btn btn-gold rounded-sm">
+							Book Santa
+							<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<line x1="5" y1="12" x2="19" y2="12" />
+								<polyline points="12 5 19 12 12 19" />
+							</svg>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h3 class="eyebrow-light mb-5">Explore</h3>
+				<ul class="grid grid-cols-2 gap-2.5 text-sm text-cream-100/80 md:grid-cols-1">
+					{
+						links.map((item) => (
+							<li>
+								<a href={item.href} class="inline-flex items-center gap-2 transition-colors hover:text-gold-300">
+									<span class="h-px w-4 bg-gold-500/60"></span>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<div>
+				<h3 class="eyebrow-light mb-5">Primary Coverage</h3>
+				<p class="text-sm leading-relaxed text-cream-100/70">
+					Proudly serving <span class="text-cream-100">Niagara Falls</span>,
+					<span class="text-cream-100">St. Catharines</span>, and
+					<span class="text-cream-100">Niagara-on-the-Lake</span>.
+				</p>
+				<p class="mt-3 border-l-2 border-gold-500/50 pl-3 text-[13px] leading-relaxed text-cream-100/55">
+					Events outside these primary areas may include extra travel charges.
+				</p>
+			</div>
+		</div>
+
+		<div class="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream-100/10 pt-6 text-[13px] text-cream-100/50 md:flex-row">
+			<p>&copy; {year} Santa Claus Niagara. All rights reserved.</p>
+			<p class="inline-flex items-center gap-1.5">
+				Handcrafted with care in Niagara
+				<svg class="h-3.5 w-3.5 text-gold-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.4l7.8-8 1-1a5.5 5.5 0 0 0 0-7.8Z" />
+				</svg>
+			</p>
+		</div>
+	</div>
+</footer>
