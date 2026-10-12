@@ -20,7 +20,6 @@ const services = [
 			'Time for gifts, storytime, and holiday cheer',
 			'Genuine one-on-one moments with every child',
 		],
-		icon: 'home',
 		image: serviceHome,
 		feature: 'Best for families creating a lasting Christmas Eve memory, or surprising little ones with an early visit.',
 	},
@@ -35,7 +34,6 @@ const services = [
 			'Group photos and individual keepsakes',
 			'Adapts to the tone of your celebration',
 		],
-		icon: 'party',
 		image: serviceParty,
 		feature: 'A warm centerpiece for neighbourhood parties, family reunions, and holiday get-togethers of any size.',
 	},
@@ -50,7 +48,6 @@ const services = [
 			'Flexible for on-site or mobile appearances',
 			'Happiness that drives generosity and goodwill',
 		],
-		icon: 'community',
 		image: serviceCommunity,
 		feature: 'Ideal for community associations, service clubs, churches, and charitable organisations across Niagara.',
 	},
@@ -65,7 +62,6 @@ const services = [
 			'Professional, patient posing for every shot',
 			'Bright, engaging meet-and-greet interactions',
 		],
-		icon: 'photo',
 		image: servicePhoto,
 		feature: 'Perfect for photographers, retailers, and venues looking for a polished, photogenic Santa.',
 	},
@@ -80,7 +76,6 @@ const services = [
 			'Patient, gentle interactions with every child',
 			'Works with teachers and staff on timing',
 		],
-		icon: 'school',
 		image: serviceSchool,
 		feature: 'Wonderful for elementary schools, preschools, daycares, and early-learning centres.',
 	},
@@ -95,20 +90,11 @@ const services = [
 			'Professional and respectful of your environment',
 			'Flexible time blocks to fit your agenda',
 		],
-		icon: 'corporate',
 		image: serviceCorporate,
 		feature: 'An elegant touch for companies wanting to celebrate their people with genuine holiday cheer.',
 	},
 ];
 
-const iconPaths = {
-	home: 'M3 10.5 12 3l9 7.5M5 9.5V21h5v-6h4v6h5V9.5',
-	party: 'M8 2v4m8-4v4M4 8h16m-1 0v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8m8 3v3m0 0v4m-2-4h-4a2 2 0 0 1-2-2 4 4 0 0 1 4-4 4 4 0 0 1 4 4 2 2 0 0 1-2 2Z',
-	community: 'M4 21v-7a8 8 0 0 1 16 0v7M2 21h20M12 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
-	photo: 'M3 7h4l2-3h6l2 3h4v13H3zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z',
-	school: 'M12 3 2 8l10 5 10-5-10-5ZM6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5M22 8v6',
-	corporate: 'M5 21V5h14v16M9 21v-8h6v8M9 9h.01M15 9h.01M9 13h.01M15 13h.01M12 12h.01',
-};
 ---
 
 <Layout title="Services | Santa Claus Niagara — Home Visits, Events, Photos & More">
@@ -136,20 +122,17 @@ const iconPaths = {
 						<div class="grid items-center gap-8 lg:grid-cols-5 lg:gap-12">
 							<div class={`lg:col-span-2 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
 								<div class="gold-frame">
-									<div class="relative flex h-full min-h-[320px] flex-col items-center justify-center overflow-hidden rounded-sm bg-gradient-to-br from-pine-900 via-pine-950 to-mahogany-800 p-10 text-center">
+									<div class="relative min-h-[320px] overflow-hidden rounded-sm">
 										<Image
 											src={service.image}
 											alt={`Santa Claus Niagara — ${service.title}`}
 											loading="lazy"
-											class="absolute inset-0 h-full w-full object-cover object-center opacity-45"
+											class={`absolute inset-0 h-full w-full object-cover ${
+												['community', 'photo', 'corporate'].includes(service.id)
+													? 'object-[center_35%]'
+													: 'object-center'
+											}`}
 										/>
-										<div class="absolute inset-0 bg-gradient-to-br from-pine-950/85 via-pine-950/70 to-mahogany-800/85"></div>
-										<svg class="relative h-16 w-16 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-											<path d={iconPaths[service.icon]} />
-										</svg>
-										<span class="relative mt-6 font-display text-6xl leading-none font-semibold text-gold-500/50">
-											{String(i + 1).padStart(2, '0')}
-										</span>
 									</div>
 								</div>
 							</div>

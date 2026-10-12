@@ -1,51 +1,86 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import gallerySkate from '../assets/santa-14.jpg';
-import galleryAngelInn from '../assets/santa-20.jpg';
-import galleryCarriage from '../assets/santa-24.jpg';
-import galleryGrinch from '../assets/santa-48.jpg';
-import galleryLap from '../assets/santa-38.jpg';
-import galleryHome from '../assets/santa-28.jpg';
 
-const images = [
-	{
-		src: gallerySkate,
-		alt: 'Santa Claus on the ice helping children skate',
-		title: 'Skating With Every Child',
-		caption: 'Community & charity events',
-	},
-	{
-		src: galleryAngelInn,
-		alt: 'Santa Claus at the Angel Inn in Niagara-on-the-Lake',
-		title: 'A Niagara Tradition',
-		caption: 'The Angel Inn, Niagara-on-the-Lake',
-	},
-	{
-		src: galleryCarriage,
-		alt: 'Horse-drawn carriage in Niagara-on-the-Lake',
-		title: 'Carriage Rides in NOTL',
-		caption: 'Niagara-on-the-Lake charm',
-	},
-	{
-		src: galleryGrinch,
-		alt: 'Santa Claus posing with the Grinch',
-		title: 'Even the Grinch Stopped By',
-		caption: 'Holiday fun & meet-and-greets',
-	},
-	{
-		src: galleryLap,
-		alt: 'A child sitting on Santa Claus\u2019s lap',
-		title: 'A Moment to Remember',
-		caption: 'Private home visits',
-	},
-	{
-		src: galleryHome,
-		alt: 'Santa Claus visiting children at a private home',
-		title: 'Evenings by the Fireplace',
-		caption: 'Private home visits',
-	},
+const modules = import.meta.glob('../assets/santa-*.jpg', { eager: true });
+
+const categories = [
+	{ id: 'all', label: 'All Moments' },
+	{ id: 'home', label: 'Home & Family' },
+	{ id: 'kids', label: 'Kids & Youth' },
+	{ id: 'events', label: 'Parties & Events' },
+	{ id: 'seniors', label: 'Seniors & Care' },
+	{ id: 'heroes', label: 'Community & Heroes' },
+	{ id: 'locations', label: 'Special Locations' },
+	{ id: 'details', label: 'Holiday Details' },
 ];
+
+const catOf = {
+	1: 'seniors', 2: 'seniors', 3: 'seniors', 4: 'seniors', 5: 'seniors',
+	6: 'seniors', 7: 'seniors', 8: 'seniors',
+	9: 'heroes',
+	10: 'home', 11: 'home', 12: 'home', 13: 'home',
+	14: 'kids', 15: 'kids', 16: 'kids', 17: 'kids', 18: 'kids',
+	19: 'home',
+	20: 'locations',
+	21: 'home', 22: 'home', 23: 'home',
+	24: 'locations',
+	25: 'events',
+	26: 'home',
+	28: 'home',
+	29: 'home',
+	30: 'home', 31: 'home',
+	32: 'home',
+	33: 'kids', 34: 'kids',
+	35: 'events', 36: 'events',
+	37: 'seniors',
+	38: 'kids',
+	39: 'heroes',
+	40: 'kids', 41: 'kids', 42: 'kids',
+	43: 'events',
+	44: 'home',
+	45: 'events',
+	46: 'kids', 47: 'kids',
+	48: 'heroes',
+	50: 'home', 51: 'home', 52: 'home', 53: 'home', 54: 'home', 55: 'home',
+	56: 'details',
+	57: 'seniors', 58: 'seniors', 59: 'seniors',
+	60: 'home',
+};
+
+const catMeta = {
+	home: { title: 'At Home With Santa', caption: 'Private home visits' },
+	kids: { title: 'Every Child\u2019s Smile', caption: 'Kids, schools & youth' },
+	events: { title: 'The Life of the Party', caption: 'Parties & events' },
+	seniors: { title: 'A Warm Welcome', caption: 'Seniors & care homes' },
+	heroes: { title: 'Community Heroes', caption: 'Firehouses & community' },
+	locations: { title: 'Niagara\u2019s Holiday Charm', caption: 'Special locations' },
+	details: { title: 'Holiday Details', caption: 'Scenes & details' },
+};
+
+const baseItems = Object.entries(modules)
+	.map(([key, value]) => {
+		const num = Number((key.match(/santa-(\d+)\.jpg/) || [])[1]);
+		return { num, src: (value || {}).default || value };
+	})
+	.filter((entry) => catOf[entry.num] !== undefined)
+	.sort((a, b) => a.num - b.num);
+
+const gallery = await Promise.all(
+	baseItems.map(async ({ num, src }) => {
+		const tile = await getImage({ src, width: 800 });
+		const zoom = await getImage({ src, width: 1600 });
+		const category = catOf[num];
+		return {
+			tile,
+			zoom,
+			category,
+			alt: `Santa Claus — ${catMeta[category].caption}`,
+			title: catMeta[category].title,
+			caption: catMeta[category].caption,
+		};
+	})
+);
 ---
 
 <Layout title="Gallery | Santa Claus Niagara — Holiday Moments">
@@ -60,21 +95,48 @@ const images = [
 			</h1>
 			<p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream-100/75 animate-fade-up" style="animation-delay: 0.15s">
 				A glimpse of the warmth and wonder Santa brings to homes and celebrations across
-				the Niagara region.
+				the Niagara region. Click any photo to view it up close.
 			</p>
 		</div>
 	</section>
 
 	<section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+		<div class="mb-12 flex flex-wrap items-center justify-center gap-3" role="group" aria-label="Filter gallery by category">
+			{
+				categories.map((category) => (
+					<button
+						type="button"
+						class={`gallery-filter ${category.id === 'all' ? 'is-active' : ''}`}
+						data-filter={category.id}
+						aria-pressed={category.id === 'all' ? 'true' : 'false'}
+					>
+						{category.label}
+					</button>
+				))
+			}
+		</div>
+
 		<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 			{
-				images.map((image) => (
-					<figure class="gold-frame group rounded-sm">
+				gallery.map((image) => (
+					<figure
+						role="button"
+						tabindex="0"
+						data-cat={image.category}
+						data-title={image.title}
+						data-caption={image.caption}
+						data-zoom={image.zoom.src}
+						data-alt={image.alt}
+						class="gallery-item gold-frame group cursor-pointer rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-gold-600"
+					>
 						<div class="overflow-hidden rounded-sm">
-							<Image
-								src={image.src}
+							<img
+								src={image.tile.src}
+								width={image.tile.attributes.width}
+								height={image.tile.attributes.height}
 								alt={image.alt}
 								loading="lazy"
+								decoding="async"
 								class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
 							/>
 						</div>
@@ -101,4 +163,133 @@ const images = [
 			</div>
 		</div>
 	</section>
+
+	<div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-pine-950/95 p-4 backdrop-blur-sm sm:p-10" role="dialog" aria-modal="true" aria-label="Photo viewer">
+		<button
+			id="lightbox-close"
+			type="button"
+			aria-label="Close photo"
+			class="absolute top-5 right-5 z-10 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-cream-100/20 text-cream-50 transition-colors hover:bg-cream-50/10"
+		>
+			<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+				<path d="M6 6l12 12M18 6L6 18" />
+			</svg>
+		</button>
+		<button
+			id="lightbox-prev"
+			type="button"
+			aria-label="Previous photo"
+			class="absolute top-1/2 left-4 z-10 -translate-y-1/2 rounded-full border border-cream-100/20 p-3 text-cream-50 transition-colors hover:bg-cream-50/10"
+		>
+			<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M15 18l-6-6 6-6" />
+			</svg>
+		</button>
+		<figure class="flex max-h-full flex-col items-center">
+			<img
+				id="lightbox-img"
+				class="mx-auto max-h-[80vh] w-auto rounded-sm shadow-2xl"
+				alt=""
+			/>
+			<figcaption class="mt-5 text-center">
+				<div class="mx-auto mb-2 h-px w-10 bg-gold-500/60"></div>
+				<p id="lightbox-title" class="font-serif text-xl font-bold text-cream-50"></p>
+				<p id="lightbox-caption" class="mt-1 text-xs tracking-[0.18em] text-gold-400 uppercase"></p>
+			</figcaption>
+		</figure>
+		<button
+			id="lightbox-next"
+			type="button"
+			aria-label="Next photo"
+			class="absolute top-1/2 right-4 z-10 -translate-y-1/2 rounded-full border border-cream-100/20 p-3 text-cream-50 transition-colors hover:bg-cream-50/10"
+		>
+			<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M9 6l6 6-6 6" />
+			</svg>
+		</button>
+	</div>
+
+	<script>
+		const items = Array.from(document.querySelectorAll('.gallery-item'));
+		const filters = Array.from(document.querySelectorAll('.gallery-filter'));
+		const lightbox = document.getElementById('lightbox');
+		const lightboxImg = document.getElementById('lightbox-img');
+		const lightboxTitle = document.getElementById('lightbox-title');
+		const lightboxCaption = document.getElementById('lightbox-caption');
+
+		let active = 'all';
+		let visible = [];
+		let currentIndex = 0;
+
+		function visibleItems() {
+			return items.filter((el) => active === 'all' || el.dataset.cat === active);
+		}
+
+		function show(el) {
+			visible = visibleItems();
+			currentIndex = visible.indexOf(el);
+			lightboxImg.src = el.dataset.zoom;
+			lightboxImg.alt = el.dataset.alt || '';
+			lightboxTitle.textContent = el.dataset.title || '';
+			lightboxCaption.textContent = el.dataset.caption || '';
+			lightbox.classList.remove('hidden');
+			lightbox.classList.add('flex');
+			document.body.style.overflow = 'hidden';
+		}
+
+		function step(direction) {
+			if (visible.length === 0) return;
+			currentIndex = (currentIndex + direction + visible.length) % visible.length;
+			show(visible[currentIndex]);
+		}
+
+		function close() {
+			lightbox.classList.add('hidden');
+			lightbox.classList.remove('flex');
+			document.body.style.overflow = '';
+		}
+
+		function filterBy(id) {
+			active = id;
+			items.forEach((el) => {
+				el.classList.toggle('hidden', active !== 'all' && el.dataset.cat !== active);
+			});
+		}
+
+		filters.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				filters.forEach((other) => {
+					other.classList.remove('is-active');
+					other.setAttribute('aria-pressed', 'false');
+				});
+				btn.classList.add('is-active');
+				btn.setAttribute('aria-pressed', 'true');
+				filterBy(btn.dataset.filter);
+			});
+		});
+
+		items.forEach((el) => {
+			el.addEventListener('click', () => show(el));
+			el.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					show(el);
+				}
+			});
+		});
+
+		document.getElementById('lightbox-close').addEventListener('click', close);
+		document.getElementById('lightbox-prev').addEventListener('click', () => step(-1));
+		document.getElementById('lightbox-next').addEventListener('click', () => step(1));
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox) close();
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (lightbox.classList.contains('hidden')) return;
+			if (e.key === 'Escape') close();
+			if (e.key === 'ArrowLeft') step(-1);
+			if (e.key === 'ArrowRight') step(1);
+		});
+	</script>
 </Layout>

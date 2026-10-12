@@ -158,6 +158,14 @@
     @apply border-2 border-gold-500/40 bg-cream-50 p-3 shadow-lg shadow-pine-950/10;
   }
 
+  .gallery-filter {
+    @apply cursor-pointer rounded-full border border-gold-500/40 bg-cream-50 px-5 py-2 text-sm font-semibold text-pine-800 transition-all duration-200 hover:border-gold-600 hover:text-gold-700;
+  }
+
+  .gallery-filter.is-active {
+    @apply border-gold-700 bg-gold-600 text-pine-950 hover:border-gold-700 hover:text-pine-950;
+  }
+
   .tile {
     @apply border border-gold-500/25 bg-cream-50 p-8 shadow-sm shadow-pine-950/5 transition-all duration-300 hover:-translate-y-1 hover:border-gold-500/60 hover:shadow-xl hover:shadow-pine-950/10;
   }
