@@ -1,0 +1,43 @@
+---
+import { cities } from '../data/cities';
+
+interface Props {
+	eyebrow?: string;
+	heading?: string;
+	intro?: string;
+}
+
+const {
+	eyebrow = 'Areas Served',
+	heading = 'Santa across the Niagara Region',
+	intro = 'Santa Claus Niagara serves families, schools, and workplaces across the region. Explore your community below.',
+} = Astro.props;
+---
+
+<section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+	<div class="mx-auto max-w-2xl text-center">
+		<p class="eyebrow">{eyebrow}</p>
+		<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">{heading}</h2>
+		<p class="mt-4 text-pine-800/75">{intro}</p>
+	</div>
+	<ul class="mt-12 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+		{
+			cities.map((city) => (
+				<li>
+					<a
+						href={`/santa-claus-for-hire/${city.slug}/`}
+						class="inline-flex items-center gap-2 text-sm font-semibold text-pine-800 transition-colors hover:text-gold-700"
+					>
+						<span class="h-px w-4 bg-gold-500/60" />
+						Hire a Santa in {city.name}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+	<p class="mt-10 text-center text-sm leading-relaxed text-pine-800/70">
+		Not sure which community you need? Start at the{' '}
+		<a href="/" class="font-semibold text-gold-700 underline decoration-gold-400/50 underline-offset-4 hover:decoration-gold-300">home page</a>{' '}for
+		Niagara-wide bookings.
+	</p>
+</section>

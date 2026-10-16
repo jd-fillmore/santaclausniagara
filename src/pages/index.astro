@@ -3,40 +3,51 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import heroPhoto from '../assets/santa-10.jpg';
 import introPhoto from '../assets/santa-30.jpg';
+import { cities } from '../data/cities';
+import {
+	contact,
+	ratesSentence,
+	primaryAreasSentence,
+	pricingExamples,
+	money,
+	localBusinessSchema,
+	faqSchema,
+	type Faq,
+} from '../data/site';
 
 const specialties = [
 	{
-		title: 'Private Home Visits',
+		title: 'Santa Claus Home Visits in Niagara',
 		text: 'Santa arrives at your front door with gifts, photos, and all the holiday cheer — a truly unforgettable Christmas moment for the whole family.',
 		href: '/services/#home',
 		icon: 'home',
 	},
 	{
-		title: 'Holiday Party Entertainment',
+		title: 'Holiday Party Santa in Niagara',
 		text: 'Festive interactions, stories, and laughter for guests of every age — the warm centerpiece of any holiday gathering.',
 		href: '/services/#party',
 		icon: 'party',
 	},
 	{
-		title: 'Community & Charity Events',
+		title: 'Community & Charity Events Across Niagara',
 		text: 'Parades, charity drives, and fundraisers across Niagara, spreading joy while supporting the causes that matter to our community.',
 		href: '/services/#community',
 		icon: 'community',
 	},
 	{
-		title: 'Photo Sessions & Meet-and-Greets',
+		title: 'Photo Session Santa in Niagara',
 		text: 'From malls and photo studios to seasonal promotions — Santa poses beautifully for lasting family keepsakes.',
 		href: '/services/#photo',
 		icon: 'photo',
 	},
 	{
-		title: 'School & Daycare Visits',
+		title: 'School & Daycare Santa in Niagara',
 		text: 'Storytime, photos, and magical one-on-one interactions that little ones will be talking about all winter long.',
 		href: '/services/#school',
 		icon: 'school',
 	},
 	{
-		title: 'Corporate & Workplace Events',
+		title: 'Corporate & Office Santa in Niagara',
 		text: 'Staff celebrations and workplace holiday moments that add warmth, charm, and a touch of classic Christmas magic.',
 		href: '/services/#corporate',
 		icon: 'corporate',
@@ -58,6 +69,33 @@ const testimonials = [
 	},
 ];
 
+const faqs: Faq[] = [
+	{
+		q: 'How do I book Santa Claus in Niagara?',
+		a: `Call ${contact.phoneDisplay} or email ${contact.email}, or send a request through the contact page. Share your date, the address, and the kind of event, and Santa will confirm the details with you personally.`,
+	},
+	{
+		q: 'How much does it cost to hire Santa in Niagara?',
+		a: `${ratesSentence} ${primaryAreasSentence} Events beyond those areas may add a travel charge, and Santa always confirms the exact total before booking.`,
+	},
+	{
+		q: 'Is travel included if my event is outside the main areas?',
+		a: 'Travel within the three primary areas is included with your visit. For events farther out, a travel charge may apply, and Santa will quote the exact total so there are no surprises.',
+	},
+	{
+		q: 'Does Santa have a real beard?',
+		a: 'Yes. Santa Claus Niagara is a real-bearded Santa with a full, natural beard, which is what makes the visit feel convincing to children and authentic in every photo.',
+	},
+	{
+		q: 'What kinds of events does Santa attend across Niagara?',
+		a: 'Private home visits, holiday parties, community and charity events, photo sessions and meet-and-greets, school and daycare visits, and corporate and office events. Whether it is a family gathering or a workplace celebration, Santa fits right in.',
+	},
+	{
+		q: 'How far ahead should I book?',
+		a: 'The holiday season fills quickly, especially on weekends. Availability is best checked by phone or email, and reaching out early gives you the widest choice of dates.',
+	},
+];
+
 const iconPaths = {
 	home: 'M3 10.5 12 3l9 7.5M5 9.5V21h5v-6h4v6h5V9.5',
 	party: 'M8 2v4m8-4v4M4 8h16m-1 0v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8m8 3v3m0 0v4m-2-4h-4a2 2 0 0 1-2-2 4 4 0 0 1 4-4 4 4 0 0 1 4 4 2 2 0 0 1-2 2Z',
@@ -66,9 +104,15 @@ const iconPaths = {
 	school: 'M12 3 2 8l10 5 10-5-10-5ZM6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5M22 8v6',
 	corporate: 'M5 21V5h14v16M9 21v-8h6v8M9 9h.01M15 9h.01M9 13h.01M15 13h.01M12 12h.01',
 };
+
+const schemas = [localBusinessSchema(), faqSchema(faqs)];
 ---
 
-<Layout title="Santa Claus Niagara | Real-Bearded Professional Santa" description="Book the real-bearded professional Santa in Niagara Falls, St. Catharines, and Niagara-on-the-Lake. Private home visits, corporate events, photo sessions, and more.">
+<Layout
+	title="Santa For Hire Niagara | Niagara Santa Rental"
+	description="Hire a real-bearded Santa Claus in Niagara for home visits, holiday parties, school and daycare visits, photo sessions, and corporate events. Call (905) 327-9036 to book your date."
+	schemas={schemas}
+>
 	<!-- Hero -->
 	<section class="relative overflow-hidden bg-pine-950">
 		<Image src={heroPhoto} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-center opacity-50" />
@@ -85,14 +129,18 @@ const iconPaths = {
 				<span class="h-px w-10 bg-gold-400/60"></span>
 			</p>
 			<h1 class="mt-6 font-display text-5xl leading-[1.05] font-semibold text-cream-50 sm:text-6xl lg:text-7xl animate-fade-up">
-				The Magic of{' '}
-				<span class="italic text-gold-300">Christmas</span>{' '}
+				Hire a Real-Bearded{' '}
+				<span class="italic text-gold-300">Santa Claus</span>{' '}
 				<br class="hidden sm:block" />
 				in Niagara
 			</h1>
-			<p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-cream-100/75 sm:text-lg animate-fade-up" style="animation-delay: 0.15s">
-				A warm, authentic Santa for family homes, community celebrations, and corporate
-				gatherings across Niagara Falls, St. Catharines, and Niagara-on-the-Lake.
+			<p class="mx-auto mt-6 font-display text-2xl text-gold-300 italic sm:text-3xl animate-fade-up" style="animation-delay: 0.1s">
+				The Magic of Christmas in Niagara
+			</p>
+			<p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-cream-100/75 sm:text-lg animate-fade-up" style="animation-delay: 0.15s">
+				Looking to hire Santa Claus in Niagara? You will find a warm, authentic Santa for
+				family homes, community celebrations, and corporate gatherings across Niagara
+				Falls, St. Catharines, and Niagara-on-the-Lake — and across the Niagara Region.
 			</p>
 			<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-up" style="animation-delay: 0.3s">
 				<a href="/contact/" class="btn btn-gold rounded-sm">
@@ -179,11 +227,12 @@ const iconPaths = {
 			<div class="mx-auto max-w-2xl text-center">
 				<p class="eyebrow">What He Does Best</p>
 				<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
-					Christmas Magic for Every Occasion
+					Santa Claus Services Across Niagara
 				</h2>
 				<p class="mt-4 text-pine-800/75">
 					From the family living room to the biggest community celebration, Santa brings
-					the same warmth, wonder, and professionalism everywhere he goes.
+					the same warmth, wonder, and professionalism everywhere he goes in the Niagara
+					Region.
 				</p>
 			</div>
 
@@ -208,6 +257,64 @@ const iconPaths = {
 						</a>
 					))
 				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing -->
+	<section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+		<div class="mx-auto max-w-3xl">
+			<div class="mx-auto max-w-2xl text-center">
+				<p class="eyebrow">Rates</p>
+				<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
+					What does it cost to hire Santa in Niagara?
+				</h2>
+				<p class="mt-4 text-pine-800/75">
+					Straightforward, friendly pricing — and travel is included in the three primary
+					areas.
+				</p>
+			</div>
+			<div class="gold-frame mt-10">
+				<div class="relative overflow-hidden rounded-sm bg-pine-950 p-8 text-center sm:p-12">
+					<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
+					<div class="relative">
+						<div class="flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-14">
+							<div>
+								<p class="font-display text-6xl leading-none font-semibold text-gold-400">{money(125).replace('.00', '')}</p>
+								<p class="mt-3 text-xs font-semibold tracking-[0.2em] text-cream-100/70 uppercase">First hour</p>
+							</div>
+							<div class="hidden h-20 w-px bg-gold-500/30 sm:block"></div>
+							<div>
+								<p class="font-display text-6xl leading-none font-semibold text-gold-400">{money(50).replace('.00', '')}</p>
+								<p class="mt-3 text-xs font-semibold tracking-[0.2em] text-cream-100/70 uppercase">Each additional ½ hour</p>
+							</div>
+						</div>
+						<p class="mx-auto mt-9 max-w-xl text-sm leading-relaxed text-cream-100/75">
+							{ratesSentence} {primaryAreasSentence} Events outside these primary areas
+							may include extra travel charges, and Santa will quote the exact total so
+							you know the full cost before you book.
+						</p>
+						<p class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-cream-100/60">
+							Whether you are planning a home visit, a holiday party, or a corporate
+							gathering, the same simple rates apply, and Santa is happy to help you
+							choose the right length for your celebration.
+						</p>
+						<div class="mx-auto mt-9 grid max-w-xl gap-3 sm:grid-cols-3">
+							{
+								pricingExamples.map((example) => (
+									<div class="rounded-sm border border-gold-500/25 bg-pine-900/50 p-4">
+										<p class="font-display text-2xl font-semibold text-gold-400">{money(example.price)}</p>
+										<p class="mt-1 text-[11px] font-semibold tracking-[0.16em] text-cream-100/60 uppercase">{example.duration}</p>
+									</div>
+								))
+							}
+						</div>
+						<p class="mt-4 text-xs text-cream-100/50">Example totals only. Santa will confirm your exact total before booking.</p>
+						<div class="mt-9">
+							<a href="/contact/" class="btn btn-gold rounded-sm">Request a Quote</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -262,6 +369,63 @@ const iconPaths = {
 		</div>
 	</section>
 
+	<!-- Areas served -->
+	<section class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24">
+		<div class="mx-auto max-w-2xl text-center">
+			<p class="eyebrow">Areas Served</p>
+			<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
+				Serving every corner of the Niagara Region
+			</h2>
+			<p class="mt-4 text-pine-800/75">
+				Santa Claus Niagara is local to the region and regularly visits homes, schools,
+				and workplaces from the lakeshore to the canal. Find your community below.
+			</p>
+			<p class="mt-4 text-pine-800/75">
+				Whether you are searching to hire Santa Claus in Niagara for a single family visit
+				or planning a full holiday event for your team, the same care goes into every
+				booking. Santa travels throughout the region and is glad to talk through your
+				plans before you commit.
+			</p>
+		</div>
+		<ul class="mt-12 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				cities.map((city) => (
+					<li>
+						<a
+							href={`/santa-claus-for-hire/${city.slug}/`}
+							class="inline-flex items-center gap-2 text-sm font-semibold text-pine-800 transition-colors hover:text-gold-700"
+						>
+							<span class="h-px w-4 bg-gold-500/60" />
+							Hire a Santa in {city.name}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<!-- FAQ -->
+	<section class="relative overflow-hidden bg-cream-200/60 py-20 lg:py-24">
+		<div class="mx-auto max-w-4xl px-5 sm:px-8">
+			<div class="mx-auto max-w-2xl text-center">
+				<p class="eyebrow">Good to Know</p>
+				<h2 class="mt-3 font-serif text-3xl font-bold text-pine-900 sm:text-4xl">
+					Hiring Santa in Niagara: frequently asked questions
+				</h2>
+			</div>
+			<div class="mt-12 space-y-4">
+				{
+					faqs.map((faq) => (
+						<div class="tile rounded-sm">
+							<h3 class="font-serif text-lg font-bold text-pine-900">{faq.q}</h3>
+							<p class="mt-2 text-sm leading-relaxed text-pine-800/75">{faq.a}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
 	<!-- Quick inquiry -->
 	<section class="plaid relative overflow-hidden py-16">
 		<svg class="pointer-events-none absolute -top-10 left-8 h-40 w-40 text-cream-100/10 animate-float" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -274,12 +438,13 @@ const iconPaths = {
 					Book Santa for Your Celebration
 				</h2>
 				<p class="mt-3 max-w-xl text-sm leading-relaxed text-cream-100/80">
-					Call <a href="tel:+19053279036" class="font-semibold text-gold-300 underline decoration-gold-400/50 underline-offset-4 hover:decoration-gold-300">(905) 327-9036</a> or
-					email <a href="mailto:byauch@cogeco.ca" class="font-semibold text-gold-300 underline decoration-gold-400/50 underline-offset-4 hover:decoration-gold-300">byauch@cogeco.ca</a> to
+					Call <a href={contact.phoneHref} class="font-semibold text-gold-300 underline decoration-gold-400/50 underline-offset-4 hover:decoration-gold-300">{contact.phoneDisplay}</a> or
+					email <a href={contact.emailHref} class="font-semibold text-gold-300 underline decoration-gold-400/50 underline-offset-4 hover:decoration-gold-300">{contact.email}</a> to
 					check availability for your date.
 				</p>
 				<p class="mt-2 max-w-xl text-sm font-semibold text-gold-300">
-					Visits: $125.00 for the first hour, then $50.00 per additional ½ hour.
+					Hire Santa Claus in Niagara for a home visit, a holiday party, or a corporate
+					celebration, and Santa will confirm your date and the exact total.
 				</p>
 			</div>
 			<a href="/contact/" class="btn shrink-0 rounded-sm border border-pine-950/30 bg-pine-950 text-gold-300 hover:-translate-y-0.5 hover:bg-pine-900">

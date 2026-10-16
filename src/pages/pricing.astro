@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AreasServed from '../components/AreasServed.astro';
 
 const regions = [
 	{
@@ -65,7 +66,10 @@ const faqs = [
 ];
 ---
 
-<Layout title="Pricing & Info | Santa Claus Niagara — Booking Guidelines & Coverage">
+<Layout
+	title="Pricing & Info | Santa Claus — Booking Guidelines & Coverage"
+	description="Santa Claus Niagara pricing: $125.00 for the first hour, then $50.00 per additional half hour, with travel included in St. Catharines, Niagara Falls, and Niagara-on-the-Lake."
+>
 	<section class="relative overflow-hidden bg-pine-950">
 		<div class="absolute -top-24 left-1/4 h-[380px] w-[560px] rounded-full bg-gold-500/15 blur-[110px]"></div>
 		<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
@@ -248,4 +252,10 @@ const faqs = [
 			}
 		</div>
 	</section>
+
+	<AreasServed
+		eyebrow="Where to Book"
+		heading="Rates and travel by community"
+		intro="Travel is included in St. Catharines, Niagara Falls, and Niagara-on-the-Lake. Pick your community to see the local travel note along with these same rates."
+	/>
 </Layout>

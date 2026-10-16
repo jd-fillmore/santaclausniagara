@@ -7,22 +7,36 @@ import Snow from '../components/Snow.astro';
 interface Props {
 	title?: string;
 	description?: string;
+	canonical?: string;
+	schemas?: unknown[];
 }
 
-const { title = 'Santa Claus Niagara | Real-Bearded Professional Santa', description = 'Santa Claus Niagara brings the authentic magic of Christmas to Niagara Falls, St. Catharines, and Niagara-on-the-Lake — private home visits, corporate events, community celebrations, and more.' } = Astro.props;
+const {
+	title = 'Santa Claus Niagara | Real-Bearded Professional Santa',
+	description = 'Santa Claus Niagara brings the authentic magic of Christmas to Niagara Falls, St. Catharines, and Niagara-on-the-Lake — private home visits, corporate events, community celebrations, and more.',
+	canonical,
+	schemas = [],
+} = Astro.props;
+
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		{schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

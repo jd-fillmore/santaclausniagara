@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import AreasServed from '../components/AreasServed.astro';
 import serviceHome from '../assets/santa-11.jpg';
 import serviceParty from '../assets/santa-35.jpg';
 import serviceCommunity from '../assets/santa-9.jpg';
@@ -97,7 +98,10 @@ const services = [
 
 ---
 
-<Layout title="Services | Santa Claus Niagara — Home Visits, Events, Photos & More">
+<Layout
+	title="Services | Santa Claus — Home Visits, Events, Photos & More"
+	description="Explore Santa Claus Niagara's services: private home visits, holiday parties, community and charity events, photo sessions, school and daycare visits, and corporate events."
+>
 	<section class="relative overflow-hidden bg-pine-950">
 		<div class="absolute -top-24 left-0 h-[380px] w-[560px] rounded-full bg-gold-500/15 blur-[110px]"></div>
 		<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
@@ -190,4 +194,8 @@ const services = [
 			</div>
 		</div>
 	</section>
+
+	<AreasServed
+		intro="Every visit above is available across the Niagara Region. Choose your community to see local details, travel notes, and services."
+	/>
 </Layout>

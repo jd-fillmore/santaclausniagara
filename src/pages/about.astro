@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import AreasServed from '../components/AreasServed.astro';
 import aboutPhoto from '../assets/santa-19.jpg';
 
 const promises = [
@@ -23,7 +24,10 @@ const promises = [
 ];
 ---
 
-<Layout title="About Santa Claus Niagara | Real-Bearded Santa in Niagara">
+<Layout
+	title="About Santa Claus | Real-Bearded Santa"
+	description="Meet Santa Claus Niagara, a real-bearded professional Santa rooted in the Niagara region and available for home visits, holiday parties, and community events."
+>
 	<section class="relative overflow-hidden bg-pine-950">
 		<div class="absolute -top-24 right-0 h-[380px] w-[560px] rounded-full bg-gold-500/15 blur-[110px]"></div>
 		<div class="plaid-overlay pointer-events-none absolute inset-0"></div>
@@ -148,4 +152,10 @@ const promises = [
 			</div>
 		</section>
 	</section>
+
+	<AreasServed
+		eyebrow="Where Santa Visits"
+		heading="Rooted in Niagara, at home in every community"
+		intro="Being local means Santa can be part of Christmas in every corner of the region. Find your community below to learn more about visits nearby."
+	/>
 </Layout>
